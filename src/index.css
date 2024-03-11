@@ -22,6 +22,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@import 'node_modules/modern-normalize/modern-normalize.css';
+
 body {
   min-width: 320px;
   min-height: 100vh;
