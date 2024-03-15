@@ -1,10 +1,20 @@
-export default function MoviesList() {
+import { Link, useLocation } from 'react-router-dom';
+
+export default function MoviesList({ movies }) {
+  const location = useLocation();
   return (
-    <p>
-      MP DE. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
-      corporis odio, totam minima itaque eligendi reiciendis iusto consectetur
-      nemo quod, officiis, omnis possimus. Minus rem itaque voluptas,
-      repellendus iste dicta.V
-    </p>
+    <>
+      <ul>
+        {movies.map(movie => {
+          return (
+            <li key={movie.id}>
+              <Link to={`/movies/${movie.id}`} state={location}>
+                {movie.title}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }

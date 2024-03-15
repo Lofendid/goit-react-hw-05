@@ -1,10 +1,65 @@
+import { useState, useEffect } from 'react';
+import { useOutletContext, useParams } from 'react-router-dom';
+
+import { fetchMovieReviews } from '../../api/movies-api';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Loading from '../Loading/Loading';
+
 export default function MovieReviews() {
+  const [movieReviews, setMovieReviews] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { error, setError } = useOutletContext();
+
+  const { movieId } = useParams();
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setIsLoading(true);
+        setError('');
+        const movieReviews = await fetchMovieReviews(movieId);
+        setMovieReviews(movieReviews);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchData();
+  }, [movieId, setError]);
+
   return (
-    <p>
-      MP DE. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
-      corporis odio, totam minima itaque eligendi reiciendis iusto consectetur
-      nemo quod, officiis, omnis possimus. Minus rem itaque voluptas,
-      repellendus iste dicta.V
-    </p>
+    <>
+      {error && <ErrorMessage msg={error} />}
+      {movieReviews && (
+        <ul>
+          {movieReviews.results.map(result => {
+            const cleanContent = result.content.replace(/<\/?[^>]+(>|$)/g, '');
+            return (
+              <li key={result.id}>
+                <ul>
+                  <li>
+                    <p>
+                      <span>Author:</span> {result.author}
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <span>Review:</span> {cleanContent}
+                    </p>
+                  </li>
+                </ul>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      {movieReviews && movieReviews.total_results === 0 && (
+        <p>This movie has no reviews yet.</p>
+      )}
+      {isLoading && <Loading />}
+    </>
   );
 }
