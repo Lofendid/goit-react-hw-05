@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { fetchMoviesByQuery } from '../../api/movies-api';
+import { fetchMoviesByQuery } from '../../api/movies-api.js';
 
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import SearchForm from '../../components/SearchForm/SearchForm';
-import MoviesList from '../../components/MovieList/MovieList';
-import Loading from '../../components/Loading/Loading';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage.jsx';
+import SearchForm from '../../components/SearchForm/SearchForm.jsx';
+import MoviesList from '../../components/MovieList/MovieList.jsx';
+import Loading from '../../components/Loading/Loading.jsx';
 
 export default function MoviesPage() {
   const [movies, setMovies] = useState(null);

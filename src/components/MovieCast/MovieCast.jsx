@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
 
-import { fetchMovieCast } from '../../api/movies-api';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import Loading from '../Loading/Loading';
+import { fetchMovieCast } from '../../api/movies-api.js';
+import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
+import Loading from '../Loading/Loading.jsx';
 
 export default function MovieCast() {
   const [movieCast, setMovieCast] = useState(null);

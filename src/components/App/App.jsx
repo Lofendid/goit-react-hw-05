@@ -3,20 +3,20 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
-const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
-const MoviesPage = lazy(() => import('../../pages/MoviesPage/MoviesPage'));
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
+const MoviesPage = lazy(() => import('../../pages/MoviesPage/MoviesPage.jsx'));
 const MovieDetailsPage = lazy(() =>
-  import('../../pages/MovieDetailsPage/MovieDetailsPage')
+  import('../../pages/MovieDetailsPage/MovieDetailsPage.jsx')
 );
 const NotFoundPage = lazy(() =>
-  import('../../pages/NotFoundPage/NotFoundPage')
+  import('../../pages/NotFoundPage/NotFoundPage.jsx')
 );
 
-const MovieReviews = lazy(() => import('../MovieReviews/MovieReviews'));
-const MovieCast = lazy(() => import('../MovieCast/MovieCast'));
+const MovieReviews = lazy(() => import('../MovieReviews/MovieReviews.jsx'));
+const MovieCast = lazy(() => import('../MovieCast/MovieCast.jsx'));
 
-import Navigation from '../Navigation/Navigation';
-import Loading from '../Loading/Loading';
+import Navigation from '../Navigation/Navigation.jsx';
+import Loading from '../Loading/Loading.jsx';
 
 function App() {
   return (

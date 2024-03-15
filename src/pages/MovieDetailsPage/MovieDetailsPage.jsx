@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 
-import { fetchMovieDetails } from '../../api/movies-api';
+import { fetchMovieDetails } from '../../api/movies-api.js';
 
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import Loading from '../../components/Loading/Loading';
-import MovieDetails from '../../components/MovieDetails/MovieDetails';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage.jsx';
+import Loading from '../../components/Loading/Loading.jsx';
+import MovieDetails from '../../components/MovieDetails/MovieDetails.jsx';
 
 export default function MovieDetailsPage() {
   const [movieDetails, setMovieDetails] = useState(null);

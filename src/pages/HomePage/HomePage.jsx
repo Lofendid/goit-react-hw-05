@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { fetchTrends } from '../../api/movies-api';
+import { fetchTrends } from '../../api/movies-api.js';
 
-import MovieList from '../../components/MovieList/MovieList';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import Loading from '../../components/Loading/Loading';
+import MovieList from '../../components/MovieList/MovieList.jsx';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage.jsx';
+import Loading from '../../components/Loading/Loading.jsx';
 
 export default function Homepage() {
   const [trendMovies, setTrendMovies] = useState(null);

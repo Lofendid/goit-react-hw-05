@@ -3,7 +3,7 @@ import css from './MovieDetails.module.css';
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
-import Loading from '../Loading/Loading';
+import Loading from '../Loading/Loading.jsx';
 
 export default function MovieDetails({ movieDetails, errorConfig }) {
   function navStyles({ isActive }) {
