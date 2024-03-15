@@ -30,7 +30,7 @@ export default function Homepage() {
 
   return (
     <>
-      {error && <ErrorMessage msg={error} />}
+      {error ? <ErrorMessage msg={error} /> : <h2>Tranding today:</h2>}
       {trendMovies && <MovieList movies={trendMovies} />}
       {isLoading && <Loading />}
     </>

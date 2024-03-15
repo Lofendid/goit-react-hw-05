@@ -61,6 +61,9 @@ export default function MovieCast() {
           })}
         </ul>
       )}
+      {movieCast && movieCast.cast.length === 0 && (
+        <p>Unnable to find a cast for this movie.</p>
+      )}
       {isLoading && <Loading />}
     </>
   );

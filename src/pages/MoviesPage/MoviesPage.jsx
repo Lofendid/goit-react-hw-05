@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 import { fetchMoviesByQuery } from '../../api/movies-api.js';
 
@@ -20,6 +21,10 @@ export default function MoviesPage() {
     setParams(params);
   }
 
+  function notify(errMsg) {
+    return toast(errMsg);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -27,7 +32,11 @@ export default function MoviesPage() {
       .toLowerCase()
       .trim();
 
-    setMovieFilter(editedValue);
+    if (!editedValue) {
+      notify('Please, enter a valid query!');
+    } else {
+      setMovieFilter(editedValue);
+    }
 
     e.target.reset();
   }
@@ -39,8 +48,14 @@ export default function MoviesPage() {
       try {
         setIsLoading(true);
         setError('');
+
         const moviesData = await fetchMoviesByQuery(movieFilter);
-        setMovies(moviesData.results);
+        if (moviesData.results.length === 0) {
+          notify('Sorry, but nothing were found, please try another query');
+          return;
+        } else {
+          setMovies(moviesData.results);
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -53,6 +68,16 @@ export default function MoviesPage() {
 
   return (
     <>
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          duration: 2000,
+          style: {
+            background: 'red',
+            color: 'white',
+          },
+        }}
+      />
       {error && <ErrorMessage msg={error} />}
       {!error && <SearchForm handleSubmit={handleSubmit} />}
       {movies && <MoviesList movies={movies} />}
