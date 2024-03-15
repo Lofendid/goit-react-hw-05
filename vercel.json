@@ -1,6 +1,3 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
-  "engines": {
-    "node": "16.x"
-  }
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
