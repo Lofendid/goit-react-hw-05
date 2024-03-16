@@ -26,7 +26,7 @@ export default function Homepage() {
     }
 
     fetchData();
-  }, [setError]);
+  }, []);
 
   return (
     <>
