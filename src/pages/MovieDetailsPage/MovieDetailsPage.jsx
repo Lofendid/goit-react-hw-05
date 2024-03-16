@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 
 import { fetchMovieDetails } from '../../api/movies-api.js';
@@ -14,7 +14,7 @@ export default function MovieDetailsPage() {
 
   const navigate = useNavigate();
   const { movieId } = useParams();
-  const location = useLocation();
+  const location = useRef(useLocation()).current;
 
   useEffect(() => {
     async function fetchData() {
