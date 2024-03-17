@@ -14,7 +14,8 @@ export default function MovieDetailsPage() {
 
   const navigate = useNavigate();
   const { movieId } = useParams();
-  const location = useRef(useLocation()).current;
+  const location = useLocation();
+  const locationRef = useRef(location).current;
 
   useEffect(() => {
     async function fetchData() {
@@ -37,7 +38,7 @@ export default function MovieDetailsPage() {
 
   return (
     <>
-      <Link to={location.state ?? '/'}>Go back</Link>
+      <Link to={locationRef.state ?? '/'}>Go back</Link>
       {error && <ErrorMessage msg={error} />}
       {movieDetails && (
         <MovieDetails
